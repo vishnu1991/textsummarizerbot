@@ -3,7 +3,7 @@
 date_default_timezone_set('Asia/Kolkata');
 define('BOT_TOKEN', 'ENTER_BOT_TOKEN_HERE');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
-$API_KEY="ENTER_API_KEY_HERE";	
+define('API_KEY', 'ENTER_API_KEY_HERE');
 $content = file_get_contents("php://input");
 $update = json_decode($content, true);
 $chatID = $update["message"]["chat"]["id"];
@@ -29,7 +29,7 @@ file_get_contents($sendto);
 
 $filename="TXTSUM-".$chatID."-".time().".txt";
 file_put_contents($filename,$c5);
-$htmxl= file_get_contents('http://api.intellexer.com/summarize?apikey='.$API_KEY.'&conceptsRestriction=10&loadConceptsTree=true&returnedTopicsCount=2&summaryRestriction=10&textStreamLength=1500&url='.$filename.'&useCache=false'); 
+$htmxl= file_get_contents('http://api.intellexer.com/summarize?apikey='.API_KEY.'&conceptsRestriction=10&loadConceptsTree=true&returnedTopicsCount=2&summaryRestriction=10&textStreamLength=1500&url='.$filename.'&useCache=false'); 
 
 $jsona=json_decode($htmxl,true);
 $getcount=count($jsona[items]);
